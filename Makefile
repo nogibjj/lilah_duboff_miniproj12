@@ -1,26 +1,29 @@
+# Define the image name
+IMAGE_NAME = de_demo
+DOCKER_ID_USER = johncoogan53
 
-install:
-	pip install --upgrade pip &&\
-		pip install -r requirements.txt
+# Build the Docker image
+build:
+	docker build -t $(IMAGE_NAME) .
 
-format:
-	black ./python_files ./*.ipynb
+# Run the Docker container
+run:
+	docker run -p 5000:5000 $(IMAGE_NAME)
 
-lint:
-	ruff check ./python_files/*.py
-	
-test:
-	python -m pytest -vv --nbval ./python_files/test_files/test_*.py
+# Remove the Docker image
+clean:
+	docker rmi $(IMAGE_NAME)
 
-check:
-	python ./python_files/desc_stats_main.py
-	git config --local user.email "action@github.com"; \
-	git config --local user.name "Github Action"; \
-	git add .; \
-	git commit -m "test"; \
-	git push; \
+image_show:
+	docker images
 
-deploy:
-	#deploy goes here
+container_show:
+	docker ps
 
-all: install lint format test 
+push:
+	docker login
+	docker tag $(IMAGE_NAME) $(DOCKER_ID_USER)/$(IMAGE_NAME)
+	docker push $(DOCKER_ID_USER)/$(IMAGE_NAME):latest
+
+login:
+	docker login -u ${DOCKER_ID_USER}

@@ -1,0 +1,8 @@
+Image: a virtual env that has the app source code and dependencies
+Container: running the program that's in the image
+
+the purpose is to create this image and push to dockerhub website
+
+Use flask as front end stuff
+
+Can be any project, could be CLI, etc 
