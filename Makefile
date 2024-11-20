@@ -1,6 +1,6 @@
 # Define the image name
-IMAGE_NAME = de_demo
-DOCKER_ID_USER = johncoogan53
+IMAGE_NAME = lilah_duboff_miniproj12
+DOCKER_ID_USER = lilahduboff
 
 # Build the Docker image
 build:

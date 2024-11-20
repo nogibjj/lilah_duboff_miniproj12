@@ -1,32 +1,18 @@
-# Use the official Python image from the Docker Hub
-FROM python:3.9-slim
+# See here for image contents: https://github.com/microsoft/vscode-dev-containers/tree/v0.245.2/containers/codespaces-linux/.devcontainer/base.Dockerfile
 
-# Set the working directory in the container
-# this allows for any subsequent commands to be run from this directory
-WORKDIR /app
+FROM mcr.microsoft.com/vscode/devcontainers/universal:2-focal
 
-# Copy the current directory contents into the container at /app
-# . indicates the directory where the Dockerfile is located and copies all 
-# files in that directory into our container working directory
-COPY . /app
-
-# Install any needed packages specified in requirements.txt
-# using --no-cache-dir to not cache the packages and save space
-RUN pip install --no-cache-dir -r requirements.txt
-
-# Make port 5000 available to the world outside this container
-EXPOSE 5000
-
-# Define environment variable
-# FLASK_APP is a framework specific environmnent variable that tells
-# the flask command where the application is located
-
-#without this the flask run command will not know what app to run.
-ENV FLASK_APP=app.py
-
-# Run app.py when the container launches
-# 0.0.0.0 sets the application to listen on all network interfaces
-
-#a more secure option would be to specify the exact IP you plan to use 
-# (e.g.API gateway interface)
-CMD ["flask", "run", "--host=0.0.0.0"]
+# [Optional] Uncomment this section to install additional OS packages.
+# RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
+#     && apt-get -y install --no-install-recommends <your-package-list-here>
+RUN apt-get update && apt-get -y install --no-install-recommends \
+   python3.8-venv \
+   gcc 
+   
+ARG USER="codespace"
+ARG VENV_PATH="/home/${USER}/venv"
+COPY requirements.txt /tmp/
+COPY Makefile /tmp/
+RUN su $USER -c "/usr/bin/python3 -m venv /home/${USER}/venv" \
+   && su $USER -c "${VENV_PATH}/bin/pip --disable-pip-version-check --no-cache-dir install -r /tmp/requirements.txt" \
+   && rm -rf /tmp/requirements.txt 
