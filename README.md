@@ -25,7 +25,7 @@
 ### App setup
 ##### To get the app set up, a .env file must be used to hide dockerhub login information and the image name, for convenience. To activate the app from the terminal, a few Makefile commands must be run:
 
-##### 1. Make login: this command takes hidden login information from a .env file to login to Dockerhub
+##### 1. Make login: this command takes hidden login information from github secrets (and/or a .env file) to login to Dockerhub
 
 ##### 2. Make build: this command will build the image, and upon opening Dockerhub, the user will be able to see both a container and an image
 
