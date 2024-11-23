@@ -1,3 +1,6 @@
+[![Build and Push Docker Image](https://github.com/nogibjj/lilah_duboff_miniproj12/actions/workflows/build.yml/badge.svg)](https://github.com/nogibjj/lilah_duboff_miniproj12/actions/workflows/build.yml)
+
+
 # Mini-Project 12: Dockerized Application
 ---
 ##### The purpose of this project is to create a python application containerized with a dockerfile. This project will demonstrate running the application within a docker container (using docker run terminal commands),and build a docker image in a CI/CD pipeline, which will be pushed to Docker Hub or other container management service.
