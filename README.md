@@ -44,5 +44,14 @@
 
 ---
 ### App Use
-##### 
+##### The app has a simple interface, which makes it easy to use. The user enters a book title in the search bar, and hits the submit button. The search results page is then loaded, which displays any matching results to the search. The user can scroll/browse on this page, or click the "book details" link to be taken to another page with more information about a specific book. 
 
+
+#### Homepage and Search Bar
+![alt text](screenshots/home_page.png)
+
+#### Page that Returns the Search Results*
+![alt text](screenshots/search_results.png)
+###### The page is scrollable, so more results are returned that do not match the exact search title
+
+#### Book Details Page

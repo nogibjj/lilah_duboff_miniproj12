@@ -2,6 +2,10 @@
 IMAGE_NAME = lilah_duboff_miniproj12
 DOCKER_ID_USER = lilahduboff
 
+install:
+	pip install --upgrade pip &&\
+		pip install -r requirements.txt
+		
 # Build the Docker image
 build:
 	docker build -t $(IMAGE_NAME) .
