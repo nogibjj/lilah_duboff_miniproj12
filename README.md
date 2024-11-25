@@ -55,5 +55,5 @@
 ![alt text](screenshots/search_results.png)
 ###### The page is scrollable, so more results are returned that do not match the exact search title
 
-#### Book Details Page!
-[alt text](screenshots/book_details.png)
+#### Book Details Page
+![alt text](screenshots/book_details.png)
