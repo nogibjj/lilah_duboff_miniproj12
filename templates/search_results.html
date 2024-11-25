@@ -4,19 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search Results</title>
-    <link rel="stylesheet" href="static/style.css">
+    <style>
+        html {
+            scroll-behavior: smooth;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            max-width: 100dvw;
+            margin: 0;
+            padding: 0;
+            background-color: rgba(244, 230, 178, 0.949);
+            text-align: center;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        ul {
+            width: 90%;
+            list-style-type: none;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            row-gap: 50px;
+            margin: 0 auto;
+            padding: 50px;
+            
+        }
+        li {
+            width: 250px;
+            height: 380px;
+            padding: 0 5px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+            position: relative;
+            overflow: hidden;
+        }
+        img {
+            height: 50%;
+            width: auto;
+            object-fit: contain;
+        }
+
+    </style>
 </head>
 <body >
     <h1>Search Results for "{{ query }}"</h1>  
     <ul>
         {% for book in books %}
             <li>
-                <h2>{{ book.title }}</h2>
-                <p>By {{ book.author }}</p>
+                <h4>{{ book.title }}</h2>
                 {% if book.cover_i %}
                     <img src="https://covers.openlibrary.org/b/id/{{ book.cover_i }}-M.jpg" alt="{{ book.title }}">
                 {% endif %}
-                <a href="/book{{ book.key }}">More Details</a>
+                <p>By {{ book.author }}</p>
+                <a href="{{ book.key }}">More Details</a>
             </li>
         {% endfor %}
     </ul>

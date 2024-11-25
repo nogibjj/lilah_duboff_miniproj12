@@ -15,11 +15,10 @@ def home():
 def search_books():
     query = request.form["query"]
    
-    # Query the Open Library API
     url = f"https://openlibrary.org/search.json?q={query}"
     response = requests.get(url)
     data = response.json()
-    # Extract relevant book information
+
     books = [
         {
             "title": book.get("title"),
@@ -34,20 +33,15 @@ def search_books():
 
 
 # Book Details Route
-@app.route("/book/<key>")
+@app.route("/works/<key>")
 def book_details(key):
-    print(key, '======================')
-    url = f"https://openlibrary.org/works/OL5735363W.json"
-    # https://openlibrary.org/works/OL82563W.json
+    url = f"https://openlibrary.org/works/{key}.json"
     response = requests.get(url)
     book = response.json()
-    
-    # Extract relevant details
+
     details = {
         "title": book.get("title"),
-        "description": book.get("description", {}).get(
-            "value", "No description available."
-        ),
+        "description": book.get("description", {}),
         "subjects": book.get("subjects", []),
         "cover_id": book.get("covers", [None])[0],
     }
